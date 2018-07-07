@@ -36,7 +36,7 @@ class AdditiveGaussianNoiseAutoencoder(object):
         self.hidden = self.transfer(tf.add(tf.matmul(self.x + scale * tf.random_normal((n_input,)), self.weights['w1']), self.weights['b1']))
         
         """ 定义输出层结构 reconstruction = w2 * hidden + b2 """
-        self.reconstruction = tf.add(tf.matmul(self.hidden, self.weights['w2'], self.weights['b2']))
+        self.reconstruction = tf.add(tf.matmul(self.hidden, self.weights['w2']), self.weights['b2'])
         
         """ 定义损失函数结构 cost = (reconstruction - x)^{2.0} """
         self.cost = 0.5 * tf.reduce_sum(tf.pow(tf.subtract(self.reconstruction, self.x), 2.0))

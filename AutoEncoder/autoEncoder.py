@@ -41,7 +41,7 @@ display_step = 1
 autoencoder = AdditiveGaussianNoiseAutoencoder(n_input = 784, 
                                                n_hidden = 200,
                                                transfer_function = tf.nn.softplus,
-                                               optimizer = tf.train.AdamOptimizer(learning_rate = 0.001),
+                                               optimizer = tf.train.AdamOptimizer(learning_rate = 0.00001),
                                                scale = 0.01)
 
 for epoch in range(training_epochs):
@@ -54,7 +54,7 @@ for epoch in range(training_epochs):
         avg_cost += cost / n_samples * batch_size
         
     if epoch % display_step == 0 :
-        print("Epoch:", '%04d' % (epoch + 1), "cost=", "{.9f}".format(avg_cost))
+        print("Epoch:", '%04d' % (epoch + 1), "cost=", "{:.9f}".format(avg_cost))
         
 
 print("Total cost: " + str(autoencoder.calc_total_cost(X_test)))
